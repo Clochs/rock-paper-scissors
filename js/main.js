@@ -1,64 +1,93 @@
+// START
 // Create computer choice function and return choice
-// IF random number <= .333
-//     return Rock
-// ELSE IF random number <= .666
-//     return Paper
-// ELSE
-//     return Scissors
-// ENDIF
-
 function getComputerChoice() {
+    // SET rPSRandom to random number .0 - .1
     let rPSRandom = Math.random()
+    // IF random number <= .333
+    //     return Rock
     if (rPSRandom <= .333) {
         return "rock"
+        // ELSE IF random number <= .666
+        //     return Paper
     } else if (rPSRandom < .666) {
         return "paper"
+        // ELSE
+        //     return Scissors
     } else {
         return "scissors"
     }
+    // ENDIF
 }
 
 // Create getHumanChoice function
-// GET input from user
-//      return input
+function getHumanChoice() {
+    // GET input from user
+    //      return input
+    return prompt("Choose rock, paper or scissors: ")
+    // END
+}
+
+// Create playGame function
+function playGame() {
+
+    // INIT declare humanScore and computerScore variables and set to 0
+    let humanScore = 0
+    let computerScore = 0
+
+    // Create function playRound and define 2 parameters humanChoice and computerChoice
+    let playRound = function (humanChoice, computerChoice) {
+        // INIT humanChoice 
+        // SET humanChoice parameter to lowercase
+        humanChoice = getHumanChoice().toLowerCase()
+        // INIT computerChoice
+        computerChoice = getComputerChoice()
+        // IF humanChoice === computerChoice 
+        //          log "It's a tie"
+        if (humanChoice === computerChoice) {
+            console.log(`You chose ${humanChoice} and the computer chose ${computerChoice}, It's a tie!`)
+            // ELSE IF humanChoice beats computer choice
+            //          log "You win!"
+            // INCREMENT humanChoice +1
+        } else if ((humanChoice === "rock" && computerChoice === "scissors")
+            || (humanChoice === "paper" && computerChoice === "rock")
+            || (humanChoice === "scissors" && computerChoice === "paper")) {
+            console.log(`${humanChoice} beats ${computerChoice}, You win!`)
+            humanScore++
+            // ELSE
+            //      computerChoice beats humanChoice
+            //          log "Computer wins!"
+            // INCREMENT computerChoice +1
+        } else {
+            console.log(`${computerChoice} beats ${humanChoice}, You lose!`)
+            computerScore++
+        }
+        // ENDIF
+        return console.log(`Human: ${humanScore} Computer: ${computerScore}`)
+    }
+    // CALL playRound 5 times
+    // REPEATE UNTIL
+    // 5 times
+    for (let i = 1; i <= 5; i++) {
+        playRound()
+        // ENDFOR
+        // IF humanScore is the same as computerScore
+    } if (humanScore === computerScore) {
+        // LOG It's a tie!
+        console.log(`It's a tie!`)
+        // ESLE IF humanScore is greater than computerScore
+    } else if (humanScore > computerScore) {
+        // LOG Game over!
+        // LOG both scores and human wins!
+        console.log(`Game over!`)
+        console.log(`Human score: ${humanScore}, Computer score: ${computerScore} human wins!`)
+        // ELSE 
+        // LOG Game over!
+        // LOG Computer wins!
+    } else {
+        console.log(`Game over!`)
+        console.log(`Human score: ${humanScore}, Computer score: ${computerScore} computer wins!`)
+    }
+    // END IF
+}
 // END
 
-function getHumanChoice() {
-    return prompt("Choose rock, paper or scissors: ")
-}
-
-// INIT declare humanScore and computerScore variables and set to 0
-
-let humanScore = 0
-let computerScore = 0
-
-
-
-
-// Create function playRound and define 2 parameters humanChoice and computerChoice
-function playRound(humanChoice, computerChoice) {
-// INIT humanChoice 
-// SET humanChoice parameter to lowercase
-    humanChoice = getHumanChoice().toLowerCase()
-// INIT computerChoice
-    computerChoice = getComputerChoice()
-// IF humanChoice === computerChoice 
-//          log "It's a tie"
-    if (humanChoice === computerChoice) {
-        console.log(`You chose ${humanChoice} and the computer chose ${computerChoice}, It's a tie!`)
-// ELSE IF humanChoice beats computer choice
-//          log "You win!"
-// INCREMENT humanChoice +1
-    } else if ((humanChoice === "rock" && computerChoice === "scissors") || (humanChoice === "paper" && computerChoice === "rock") || (humanChoice === "scissors" && computerChoice === "paper")) {
-        console.log(`${humanChoice} beats ${computerChoice}, You win!`)
-        humanScore++
-// ELSE
-//      computerChoice beats humanChoice
-//          log "Computer wins!"
-// INCREMENT computerChoice +1
-// ENDIF
-    } else {
-        console.log(`${computerChoice} beats ${humanChoice}, You lose!`)
-        computerScore++
-    }
-}
