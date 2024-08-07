@@ -96,12 +96,12 @@
 //     console.log('round')
 // })
 
-
+// playRound now only needs one arg
 let playRound = function (humanChoice) {
 
 
     computerChoice = getComputerChoice()
-
+// Changed console logs to DOM events
     if (humanChoice === computerChoice) {
         document.querySelector('#result').textContent = `You chose ${humanChoice}, and the computer chose ${computerChoice}. It's a tie!`
 
@@ -122,7 +122,7 @@ let playRound = function (humanChoice) {
     }
     return document.querySelector('#score').textContent = `Human: ${humanScore} Computer: ${computerScore}`
 }
-
+// getComputerChoice stays the same
 function getComputerChoice() {
     let rPSRandom = Math.random()
 
@@ -142,9 +142,9 @@ let humanScore = 0
 let computerScore = 0
 
 
-
+// Make a var that grabs all the button elements
 const buttons = document.querySelectorAll('button')
-
+// Loop through the buttons and listen for an event that matches button.id
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         playRound(button.id)
